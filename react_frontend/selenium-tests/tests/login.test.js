@@ -1,12 +1,17 @@
 const { Builder, By, until } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 const assert = require('assert');
 
 describe('Web Application Login E2E Test', function () {
     let driver;
 
     before(async function () {
-        driver = await new Builder().forBrowser('chrome').build();
-        await driver.manage().window().maximize();
+        let options = new chrome.Options();
+        options.addArguments('--headless=new');
+        options.addArguments('--no-sandbox');
+        options.addArguments('--disable-dev-shm-usage');
+        driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
+        // await driver.manage().window().maximize();
     });
 
     after(async function () {
