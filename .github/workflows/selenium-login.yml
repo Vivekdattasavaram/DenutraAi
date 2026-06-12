@@ -1,0 +1,45 @@
+name: Web Selenium E2E Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Frontend Dependencies
+      working-directory: react_frontend
+      run: npm install
+
+    - name: Install Selenium Dependencies
+      working-directory: react_frontend/selenium-tests
+      run: npm install
+
+    - name: Start Expo Web Server
+      working-directory: react_frontend
+      run: npx expo export:web
+      # In a real CI environment, it's often easier to build/export and serve statically:
+      # npx serve web-build -p 8081 &
+
+    - name: Serve Web Build
+      working-directory: react_frontend
+      run: |
+        npm install -g serve
+        serve dist -p 8081 &
+        sleep 5
+
+    - name: Run Selenium Login Test
+      working-directory: react_frontend/selenium-tests
+      run: npm run login

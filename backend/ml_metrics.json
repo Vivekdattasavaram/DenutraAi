@@ -1,0 +1,51 @@
+{
+  "accuracy": 0.93,
+  "precision_macro": 0.923943116326115,
+  "recall_macro": 0.9105644619164011,
+  "classification_report": {
+    "High Risk": {
+      "precision": 0.9436201780415431,
+      "recall": 0.9784615384615385,
+      "f1-score": 0.9607250755287009,
+      "support": 325.0
+    },
+    "Low Risk": {
+      "precision": 0.9186046511627907,
+      "recall": 0.8876404494382022,
+      "f1-score": 0.9028571428571428,
+      "support": 89.0
+    },
+    "Medium Risk": {
+      "precision": 0.9096045197740112,
+      "recall": 0.8655913978494624,
+      "f1-score": 0.8870523415977961,
+      "support": 186.0
+    },
+    "accuracy": 0.93,
+    "macro avg": {
+      "precision": 0.923943116326115,
+      "recall": 0.9105644619164011,
+      "f1-score": 0.9168781866612132,
+      "support": 600.0
+    },
+    "weighted avg": {
+      "precision": 0.9293646874915932,
+      "recall": 0.93,
+      "f1-score": 0.9293027846638392,
+      "support": 600.0
+    }
+  },
+  "feature_importances": {
+    "brushing_frequency": 0.06836918269838864,
+    "flossing_frequency": 0.12611838015719654,
+    "sugary_food_frequency": 0.06164134280957231,
+    "gum_bleeding": 0.021293725706714523,
+    "dental_visits": 0.05283415000417771,
+    "brushing_duration": 0.0658471484310213,
+    "consistency_score": 0.056592804040142976,
+    "assessment_score": 0.5473032661527859
+  },
+  "model_path": "C:\\Users\\vivek\\oral_health_app\\fastapi_backend\\app\\ml\\risk_model.pkl",
+  "confusion_matrix_path": "C:\\Users\\vivek\\oral_health_app\\fastapi_backend\\app\\ml\\confusion_matrix.png",
+  "feature_importance_path": "C:\\Users\\vivek\\oral_health_app\\fastapi_backend\\app\\ml\\feature_importance.png"
+}
