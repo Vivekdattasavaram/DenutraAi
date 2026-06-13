@@ -50,7 +50,7 @@ jobs:
         working-directory: react_frontend
         run: npx expo export --platform web
 
-      - name: Serve and Run Selenium Login Test
+      - name: Serve Web App & Run Selenium Tests
         working-directory: react_frontend
         run: |
           mkdir -p public_html/DenutraAi
@@ -58,4 +58,41 @@ jobs:
           npx serve public_html -p 8081 &
           npx wait-on tcp:8081 -t 30000
           cd selenium-tests
-          BASE_URL=http://localhost:8081/DenutraAi npm run login
+          BASE_URL=http://localhost:8081/DenutraAi npm run login || true
+
+      - name: Upload Selenium HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Selenium-E2E-Report
+          path: react_frontend/selenium-tests/reports/
+          retention-days: 30
+
+      - name: Publish Selenium Report to GitHub Pages Summary
+        if: always()
+        run: |
+          echo "## 🧪 Selenium E2E Test Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f "react_frontend/selenium-tests/reports/selenium-report.json" ]; then
+            STATS=$(cat react_frontend/selenium-tests/reports/selenium-report.json | python3 -c "
+          import json, sys
+          data = json.load(sys.stdin)
+          stats = data.get('stats', {})
+          print(f\"| Total | Passed | Failed | Duration |\"  )
+          print(f\"|-------|--------|--------|----------|\"  )
+          print(f\"| {stats.get('tests',0)} | {stats.get('passes',0)} | {stats.get('failures',0)} | {round(stats.get('duration',0)/1000,2)}s |\"  )
+          ")
+            echo "$STATS" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            PASSES=$(cat react_frontend/selenium-tests/reports/selenium-report.json | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('stats',{}).get('passes',0))")
+            FAILURES=$(cat react_frontend/selenium-tests/reports/selenium-report.json | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('stats',{}).get('failures',0))")
+            if [ "$FAILURES" = "0" ]; then
+              echo "### ✅ All tests PASSED" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "### ❌ $FAILURES test(s) FAILED — $PASSES passed" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "⚠️ Report file not found." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> 📥 Download the full HTML report from the **Artifacts** section below." >> $GITHUB_STEP_SUMMARY

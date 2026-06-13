@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "Selenium E2E Tests for Web Application",
   "scripts": {
-    "login": "mocha tests/login.test.js --timeout 60000",
-    "test:all": "npm run login && ..\\..\\fastapi_backend\\venv\\Scripts\\python.exe generate_e2e_report.py"
+    "login": "mocha tests/login.test.js --timeout 60000 --reporter mochawesome --reporter-options reportDir=reports,reportFilename=selenium-report,html=true,json=true",
+    "test:all": "npm run login"
   },
   "devDependencies": {
     "chromedriver": "^131.0.1",
     "mocha": "^11.0.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-report-generator": "^6.2.0",
     "selenium-webdriver": "^4.27.0"
   }
 }
