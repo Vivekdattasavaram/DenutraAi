@@ -30,6 +30,9 @@
     },
     "plugins": [
       "expo-video"
-    ]
+    ],
+    "experiments": {
+      "baseUrl": "/Oral_Health_Literacy"
+    }
   }
 }
