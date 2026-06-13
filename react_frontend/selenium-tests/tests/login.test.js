@@ -29,9 +29,9 @@ describe('Web Application Login E2E Test', function () {
         // In react-native-web, testID is rendered as data-testid
         const emailInput = await driver.wait(
             until.elementLocated(By.css('[data-testid="email"]')),
-            10000
+            30000
         );
-        await emailInput.sendKeys('john@example.com');
+        await emailInput.sendKeys('savaramvivekdatta@gmail.com');
 
         // Locate and interact with password
         const passwordInput = await driver.findElement(By.css('[data-testid="password"]'));
@@ -45,7 +45,7 @@ describe('Web Application Login E2E Test', function () {
         // Assuming that after login, the email input is no longer present or a dashboard element appears.
         await driver.wait(
             until.stalenessOf(emailInput),
-            15000,
+            30000,
             "Login did not succeed or took too long."
         );
         

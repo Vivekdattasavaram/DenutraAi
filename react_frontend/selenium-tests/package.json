@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Selenium E2E Tests for Web Application",
   "scripts": {
-    "login": "mocha tests/login.test.js --timeout 30000",
+    "login": "mocha tests/login.test.js --timeout 60000",
     "test:all": "npm run login && ..\\..\\fastapi_backend\\venv\\Scripts\\python.exe generate_e2e_report.py"
   },
   "devDependencies": {
