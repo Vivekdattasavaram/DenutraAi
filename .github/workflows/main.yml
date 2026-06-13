@@ -53,9 +53,9 @@ jobs:
       - name: Serve and Run Selenium Login Test
         working-directory: react_frontend
         run: |
-          mkdir -p public_html/Oral_Health_Literacy
-          cp -r dist/* public_html/Oral_Health_Literacy/
+          mkdir -p public_html/DenutraAi
+          cp -r dist/* public_html/DenutraAi/
           npx serve public_html -p 8081 &
           npx wait-on tcp:8081 -t 30000
           cd selenium-tests
-          BASE_URL=http://localhost:8081/Oral_Health_Literacy npm run login
+          BASE_URL=http://localhost:8081/DenutraAi npm run login

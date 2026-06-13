@@ -2,7 +2,7 @@
   "name": "react_frontend",
   "version": "1.0.0",
   "main": "index.ts",
-  "homepage": "https://Vivekdattasavaram.github.io/Oral_Health_Literacy",
+  "homepage": "https://Vivekdattasavaram.github.io/DenutraAi",
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
