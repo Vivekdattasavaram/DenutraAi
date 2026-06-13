@@ -30,9 +30,6 @@
     },
     "plugins": [
       "expo-video"
-    ],
-    "experiments": {
-      "baseUrl": "/DenutraAi"
-    }
+    ]
   }
 }
