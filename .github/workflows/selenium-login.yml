@@ -1,0 +1,61 @@
+name: Web Selenium E2E Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Backend Dependencies
+        working-directory: fastapi_backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Start FastAPI Backend & Create User
+        working-directory: fastapi_backend
+        run: |
+          python seed_db.py
+          python create_admin.py savaramvivekdatta@gmail.com
+          uvicorn main:app --port 8000 &
+          npx wait-on tcp:8000 -t 30000
+
+      - name: Install Frontend Dependencies
+        working-directory: react_frontend
+        run: npm install
+
+      - name: Install Selenium Dependencies
+        working-directory: react_frontend/selenium-tests
+        run: npm install
+
+      - name: Export Web Build
+        working-directory: react_frontend
+        run: npx expo export --platform web
+
+      - name: Serve and Run Selenium Login Test
+        working-directory: react_frontend
+        run: |
+          mkdir -p public_html/DenutraAi
+          cp -r dist/* public_html/DenutraAi/
+          npx serve public_html -p 8081 &
+          npx wait-on tcp:8081 -t 30000
+          cd selenium-tests
+          BASE_URL=http://localhost:8081/DenutraAi npm run login
