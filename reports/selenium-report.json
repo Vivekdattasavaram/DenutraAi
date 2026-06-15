@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2026-06-15T18:06:04.045Z",
-    "end": "2026-06-15T18:06:46.114Z",
-    "duration": 42069,
+    "start": "2026-06-15T19:05:58.677Z",
+    "end": "2026-06-15T19:06:37.819Z",
+    "duration": 39142,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "dd9b65cb-a67d-4257-b46b-953b0dfce10a",
+      "uuid": "741e2e1b-ea20-489e-ba6b-e6bb5d1014a3",
       "title": "",
       "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
       "file": "/tests/login.test.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "6254d409-bba5-457d-94d2-449f1fd9e40a",
+          "uuid": "dad0750d-ef9c-49f7-853c-c788414efbeb",
           "title": "Web Application Login E2E Test",
           "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
           "file": "/tests/login.test.js",
@@ -36,7 +36,7 @@
               "title": "\"before all\" hook in \"Web Application Login E2E Test\"",
               "fullTitle": "Web Application Login E2E Test \"before all\" hook in \"Web Application Login E2E Test\"",
               "timedOut": false,
-              "duration": 12501,
+              "duration": 10373,
               "state": null,
               "speed": null,
               "pass": false,
@@ -45,8 +45,8 @@
               "context": null,
               "code": "let options = new chrome.Options();\noptions.addArguments('--headless=new');\noptions.addArguments('--no-sandbox');\noptions.addArguments('--disable-dev-shm-usage');\n// Ignore certificate errors just in case\noptions.addArguments('--ignore-certificate-errors');\ndriver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();\nawait driver.manage().window().setRect({ width: 1280, height: 800 });",
               "err": {},
-              "uuid": "23679933-07e1-4421-b996-557637fdb7f0",
-              "parentUUID": "6254d409-bba5-457d-94d2-449f1fd9e40a",
+              "uuid": "dfa64644-5674-4cfe-bc7f-6af1bb583bd0",
+              "parentUUID": "dad0750d-ef9c-49f7-853c-c788414efbeb",
               "isHook": true,
               "skipped": false
             }
@@ -65,8 +65,8 @@
               "context": null,
               "code": "if (driver) {\n    await driver.quit();\n}",
               "err": {},
-              "uuid": "f15ab2e0-cd32-4359-9cc7-6b5a8a1e1ad2",
-              "parentUUID": "6254d409-bba5-457d-94d2-449f1fd9e40a",
+              "uuid": "4a489512-13f2-4b76-808d-ff2a77ba5aed",
+              "parentUUID": "dad0750d-ef9c-49f7-853c-c788414efbeb",
               "isHook": true,
               "skipped": false
             }
@@ -76,7 +76,7 @@
               "title": "should successfully login and navigate to dashboard",
               "fullTitle": "Web Application Login E2E Test should successfully login and navigate to dashboard",
               "timedOut": false,
-              "duration": 29511,
+              "duration": 28712,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -89,8 +89,8 @@
                 "estack": "Error: Dashboard did not load after clicking Login. Did the API call fail?\n    at Context.<anonymous> (tests/login.test.js:135:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
                 "diff": null
               },
-              "uuid": "28fdb321-9ad9-4f6f-a2c0-b785ce2c5d15",
-              "parentUUID": "6254d409-bba5-457d-94d2-449f1fd9e40a",
+              "uuid": "41a24518-983a-4181-9d13-f82ec378c6ec",
+              "parentUUID": "dad0750d-ef9c-49f7-853c-c788414efbeb",
               "isHook": false,
               "skipped": false
             }
@@ -98,11 +98,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "28fdb321-9ad9-4f6f-a2c0-b785ce2c5d15"
+            "41a24518-983a-4181-9d13-f82ec378c6ec"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 29511,
+          "duration": 28712,
           "root": false,
           "rootEmpty": false,
           "_timeout": 60000
