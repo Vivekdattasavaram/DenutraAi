@@ -26,11 +26,29 @@ describe('Web Application Login E2E Test', function () {
     // Helper to take screenshots on failure
     async function takeScreenshot(name) {
         try {
+            if (!fs.existsSync('reports')) {
+                fs.mkdirSync('reports', { recursive: true });
+            }
             let image = await driver.takeScreenshot();
             fs.writeFileSync(`reports/${name}.png`, image, 'base64');
             console.log(`[DEBUG] Saved screenshot: ${name}.png`);
         } catch (e) {
             console.error(`[DEBUG] Failed to take screenshot ${name}:`, e);
+        }
+    }
+
+    async function printBrowserLogs() {
+        try {
+            const logs = await driver.manage().logs().get('browser');
+            if (logs && logs.length > 0) {
+                console.log('--- BROWSER CONSOLE LOGS ---');
+                logs.forEach(log => console.log(`[${log.level.name}] ${log.message}`));
+                console.log('-----------------------------');
+            } else {
+                console.log('--- NO BROWSER CONSOLE LOGS ---');
+            }
+        } catch (e) {
+            console.error('[DEBUG] Failed to get browser logs', e);
         }
     }
 
@@ -89,6 +107,9 @@ describe('Web Application Login E2E Test', function () {
             );
         } catch (e) {
             await takeScreenshot('error-dashboard-not-loaded');
+            await printBrowserLogs();
+            const currentUrl = await driver.getCurrentUrl();
+            console.log(`[DEBUG] Current URL at failure: ${currentUrl}`);
             throw new Error('Dashboard did not load after clicking Login. Did the API call fail?');
         }
         
