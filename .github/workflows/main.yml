@@ -52,7 +52,7 @@ jobs:
         working-directory: fastapi_backend
         run: |
           python seed_db.py
-          python create_admin.py savaramvivekdatta@gmail.com
+          python create_user.py testuser@example.com
           uvicorn main:app --port 8000 &
           npx wait-on tcp:8000 -t 30000
 

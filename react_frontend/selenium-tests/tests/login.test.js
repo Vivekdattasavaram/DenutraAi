@@ -68,7 +68,7 @@ describe('Web Application Login E2E Test', function () {
 
         // 3. Enter credentials
         console.log('[DEBUG] Entering credentials...');
-        await emailInput.sendKeys('savaramvivekdatta@gmail.com');
+        await emailInput.sendKeys('testuser@example.com');
 
         const passwordInput = await driver.findElement(By.css('input[placeholder*="password" i], input[type="password"]'));
         await passwordInput.sendKeys('password123');
