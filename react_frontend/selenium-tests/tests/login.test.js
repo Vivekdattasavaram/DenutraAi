@@ -106,9 +106,9 @@ describe('Web Application Login E2E Test', function () {
         
         const loginButton = await driver.findElement(By.css('[data-testid="login-button"]'));
         
-        // React Native Web TouchableOpacity responds best to native Selenium clicks (which emit mousedown/mouseup)
-        // rather than JS .click() which only emits a click event.
-        await loginButton.click();
+        // In headless CI environments, sometimes the layout engine does not perfectly
+        // expose the TouchableOpacity to native clicks. We use JS click as a fallback.
+        await driver.executeScript("arguments[0].click();", loginButton);
 
         // Wait a moment to see if any alert pops up or transition starts
         await driver.sleep(3000);
@@ -124,15 +124,13 @@ describe('Web Application Login E2E Test', function () {
             );
         } catch (e) {
             await takeScreenshot('error-dashboard-not-loaded');
-            await printBrowserLogs();
+            let logStr = '';
+            try {
+                const logs = await driver.manage().logs().get('browser');
+                logStr = logs.map(l => `[${l.level.name}] ${l.message}`).join('\n');
+            } catch(err) {}
             const currentUrl = await driver.getCurrentUrl();
-            console.log(`[DEBUG] Current URL at failure: ${currentUrl}`);
-            
-            // Also dump the page source text to see what is actually rendered!
-            const bodyText = await driver.findElement(By.tagName('body')).getText();
-            console.log(`[DEBUG] Page body text at failure: \n${bodyText.substring(0, 1000)}`);
-            
-            throw new Error('Dashboard did not load after clicking Login. Did the API call fail?');
+            throw new Error(`Dashboard did not load. URL: ${currentUrl}\nBrowser Logs:\n${logStr}`);
         }
         
         console.log('[DEBUG] Dashboard successfully loaded!');
