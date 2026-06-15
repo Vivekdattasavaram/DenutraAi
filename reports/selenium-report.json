@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2026-06-15T04:23:50.581Z",
-    "end": "2026-06-15T04:24:30.458Z",
-    "duration": 39877,
+    "start": "2026-06-15T04:24:12.678Z",
+    "end": "2026-06-15T04:24:55.738Z",
+    "duration": 43060,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "0b76ce58-0874-4135-8b03-2b5695889de1",
+      "uuid": "19f749d7-ec58-4a76-9b43-56352771d91c",
       "title": "",
       "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
       "file": "/tests/login.test.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "1fcbbf6d-6870-43b3-8bf4-b2c50c3cf896",
+          "uuid": "e59da477-401d-4d27-a87c-acb7f89a9094",
           "title": "Web Application Login E2E Test",
           "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
           "file": "/tests/login.test.js",
@@ -36,7 +36,7 @@
               "title": "\"before all\" hook in \"Web Application Login E2E Test\"",
               "fullTitle": "Web Application Login E2E Test \"before all\" hook in \"Web Application Login E2E Test\"",
               "timedOut": false,
-              "duration": 5892,
+              "duration": 8691,
               "state": null,
               "speed": null,
               "pass": false,
@@ -45,8 +45,8 @@
               "context": null,
               "code": "let options = new chrome.Options();\noptions.addArguments('--headless=new');\noptions.addArguments('--no-sandbox');\noptions.addArguments('--disable-dev-shm-usage');\ndriver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();\n// await driver.manage().window().maximize();",
               "err": {},
-              "uuid": "b5675de5-fbb2-4522-b298-a64cec099cee",
-              "parentUUID": "1fcbbf6d-6870-43b3-8bf4-b2c50c3cf896",
+              "uuid": "cb4365bc-e21a-48b3-a64a-6f02c30c7e53",
+              "parentUUID": "e59da477-401d-4d27-a87c-acb7f89a9094",
               "isHook": true,
               "skipped": false
             }
@@ -56,7 +56,7 @@
               "title": "\"after all\" hook in \"Web Application Login E2E Test\"",
               "fullTitle": "Web Application Login E2E Test \"after all\" hook in \"Web Application Login E2E Test\"",
               "timedOut": false,
-              "duration": 53,
+              "duration": 55,
               "state": null,
               "speed": null,
               "pass": false,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "if (driver) {\n    await driver.quit();\n}",
               "err": {},
-              "uuid": "2c740712-3e33-4bdc-901f-18705bb6ac15",
-              "parentUUID": "1fcbbf6d-6870-43b3-8bf4-b2c50c3cf896",
+              "uuid": "eb06f3b0-e2fa-41ee-9c03-e95e266279f6",
+              "parentUUID": "e59da477-401d-4d27-a87c-acb7f89a9094",
               "isHook": true,
               "skipped": false
             }
@@ -76,7 +76,7 @@
               "title": "should successfully login and navigate to dashboard",
               "fullTitle": "Web Application Login E2E Test should successfully login and navigate to dashboard",
               "timedOut": false,
-              "duration": 33926,
+              "duration": 34310,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -85,12 +85,12 @@
               "context": null,
               "code": "// Navigate to the Expo Web local server (or deployed URL)\nconst baseUrl = process.env.BASE_URL || 'http://localhost:8081';\nawait driver.get(baseUrl);\n// Wait for the email input field to be located and visible\n// In react-native-web, testID is rendered as data-testid\nconst emailInput = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"email\"]')),\n    30000\n);\nawait emailInput.sendKeys('savaramvivekdatta@gmail.com');\n// Locate and interact with password\nconst passwordInput = await driver.findElement(By.css('[data-testid=\"password\"]'));\nawait passwordInput.sendKeys('password123');\n// Locate and click the login button\nconst loginButton = await driver.findElement(By.css('[data-testid=\"login-button\"]'));\nawait loginButton.click();\n// Wait for login to complete by observing UI changes\n// Assuming that after login, the email input is no longer present or a dashboard element appears.\nawait driver.wait(\n    until.stalenessOf(emailInput),\n    30000,\n    \"Login did not succeed or took too long.\"\n);\n\n// Test Passed.\nassert.ok(true, \"Successfully logged in and navigated away from login screen\");",
               "err": {
-                "message": "TimeoutError: Login did not succeed or took too long.\nWait timed out after 30060ms",
-                "estack": "TimeoutError: Login did not succeed or took too long.\nWait timed out after 30060ms\n    at /home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/node_modules/selenium-webdriver/lib/webdriver.js:929:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "message": "TimeoutError: Login did not succeed or took too long.\nWait timed out after 30106ms",
+                "estack": "TimeoutError: Login did not succeed or took too long.\nWait timed out after 30106ms\n    at /home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/node_modules/selenium-webdriver/lib/webdriver.js:929:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
                 "diff": null
               },
-              "uuid": "9ce32ae6-f5bb-465f-8eed-45de441c431f",
-              "parentUUID": "1fcbbf6d-6870-43b3-8bf4-b2c50c3cf896",
+              "uuid": "9c52e2c1-7b1d-44c2-aedf-d7e654698d52",
+              "parentUUID": "e59da477-401d-4d27-a87c-acb7f89a9094",
               "isHook": false,
               "skipped": false
             }
@@ -98,11 +98,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "9ce32ae6-f5bb-465f-8eed-45de441c431f"
+            "9c52e2c1-7b1d-44c2-aedf-d7e654698d52"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 33926,
+          "duration": 34310,
           "root": false,
           "rootEmpty": false,
           "_timeout": 60000
