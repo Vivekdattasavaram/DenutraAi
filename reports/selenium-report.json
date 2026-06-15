@@ -1,24 +1,24 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 0,
+    "tests": 1,
     "passes": 0,
     "pending": 0,
-    "failures": 0,
-    "start": "2026-06-15T04:05:30.887Z",
-    "end": "2026-06-15T04:06:01.645Z",
-    "duration": 30758,
+    "failures": 1,
+    "start": "2026-06-15T04:23:50.581Z",
+    "end": "2026-06-15T04:24:30.458Z",
+    "duration": 39877,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
-    "other": 1,
-    "hasOther": true,
-    "skipped": 1,
-    "hasSkipped": true
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
   },
   "results": [
     {
-      "uuid": "5f5f21f4-78cb-49a9-a703-7751995a557f",
+      "uuid": "0b76ce58-0874-4135-8b03-2b5695889de1",
       "title": "",
       "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
       "file": "/tests/login.test.js",
@@ -27,30 +27,26 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "f296c2eb-d437-4889-a8e5-2c63086e7dbe",
+          "uuid": "1fcbbf6d-6870-43b3-8bf4-b2c50c3cf896",
           "title": "Web Application Login E2E Test",
           "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
           "file": "/tests/login.test.js",
           "beforeHooks": [
             {
-              "title": "\"before all\" hook for \"should successfully login and navigate to dashboard\"",
-              "fullTitle": "Web Application Login E2E Test \"before all\" hook for \"should successfully login and navigate to dashboard\"",
+              "title": "\"before all\" hook in \"Web Application Login E2E Test\"",
+              "fullTitle": "Web Application Login E2E Test \"before all\" hook in \"Web Application Login E2E Test\"",
               "timedOut": false,
-              "duration": 30750,
-              "state": "failed",
+              "duration": 5892,
+              "state": null,
               "speed": null,
               "pass": false,
-              "fail": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "let options = new chrome.Options();\noptions.addArguments('--headless=new');\noptions.addArguments('--no-sandbox');\noptions.addArguments('--disable-dev-shm-usage');\ndriver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();\n// await driver.manage().window().maximize();",
-              "err": {
-                "message": "SessionNotCreatedError: session not created: This version of ChromeDriver only supports Chrome version 131\nCurrent browser version is 149.0.7827.53 with binary path /usr/bin/google-chrome",
-                "estack": "SessionNotCreatedError: session not created: This version of ChromeDriver only supports Chrome version 131\nCurrent browser version is 149.0.7827.53 with binary path /usr/bin/google-chrome\n    at Object.throwDecodedError (node_modules/selenium-webdriver/lib/error.js:523:15)\n    at parseHttpResponse (node_modules/selenium-webdriver/lib/http.js:526:13)\n    at Executor.execute (node_modules/selenium-webdriver/lib/http.js:458:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
-                "diff": null
-              },
-              "uuid": "13848733-a82e-4353-b64a-b7f5c23d8c5c",
-              "parentUUID": "f296c2eb-d437-4889-a8e5-2c63086e7dbe",
+              "err": {},
+              "uuid": "b5675de5-fbb2-4522-b298-a64cec099cee",
+              "parentUUID": "1fcbbf6d-6870-43b3-8bf4-b2c50c3cf896",
               "isHook": true,
               "skipped": false
             }
@@ -60,7 +56,7 @@
               "title": "\"after all\" hook in \"Web Application Login E2E Test\"",
               "fullTitle": "Web Application Login E2E Test \"after all\" hook in \"Web Application Login E2E Test\"",
               "timedOut": false,
-              "duration": 0,
+              "duration": 53,
               "state": null,
               "speed": null,
               "pass": false,
@@ -69,8 +65,8 @@
               "context": null,
               "code": "if (driver) {\n    await driver.quit();\n}",
               "err": {},
-              "uuid": "1be02fbf-c4fc-4d3f-be37-30e1fd8c2e15",
-              "parentUUID": "f296c2eb-d437-4889-a8e5-2c63086e7dbe",
+              "uuid": "2c740712-3e33-4bdc-901f-18705bb6ac15",
+              "parentUUID": "1fcbbf6d-6870-43b3-8bf4-b2c50c3cf896",
               "isHook": true,
               "skipped": false
             }
@@ -80,29 +76,33 @@
               "title": "should successfully login and navigate to dashboard",
               "fullTitle": "Web Application Login E2E Test should successfully login and navigate to dashboard",
               "timedOut": false,
-              "duration": 0,
-              "state": null,
+              "duration": 33926,
+              "state": "failed",
               "speed": null,
               "pass": false,
-              "fail": false,
+              "fail": true,
               "pending": false,
               "context": null,
               "code": "// Navigate to the Expo Web local server (or deployed URL)\nconst baseUrl = process.env.BASE_URL || 'http://localhost:8081';\nawait driver.get(baseUrl);\n// Wait for the email input field to be located and visible\n// In react-native-web, testID is rendered as data-testid\nconst emailInput = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"email\"]')),\n    30000\n);\nawait emailInput.sendKeys('savaramvivekdatta@gmail.com');\n// Locate and interact with password\nconst passwordInput = await driver.findElement(By.css('[data-testid=\"password\"]'));\nawait passwordInput.sendKeys('password123');\n// Locate and click the login button\nconst loginButton = await driver.findElement(By.css('[data-testid=\"login-button\"]'));\nawait loginButton.click();\n// Wait for login to complete by observing UI changes\n// Assuming that after login, the email input is no longer present or a dashboard element appears.\nawait driver.wait(\n    until.stalenessOf(emailInput),\n    30000,\n    \"Login did not succeed or took too long.\"\n);\n\n// Test Passed.\nassert.ok(true, \"Successfully logged in and navigated away from login screen\");",
-              "err": {},
-              "uuid": "d024c60a-afbd-4f0d-b031-208a904a54ce",
-              "parentUUID": "f296c2eb-d437-4889-a8e5-2c63086e7dbe",
+              "err": {
+                "message": "TimeoutError: Login did not succeed or took too long.\nWait timed out after 30060ms",
+                "estack": "TimeoutError: Login did not succeed or took too long.\nWait timed out after 30060ms\n    at /home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/node_modules/selenium-webdriver/lib/webdriver.js:929:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": null
+              },
+              "uuid": "9ce32ae6-f5bb-465f-8eed-45de441c431f",
+              "parentUUID": "1fcbbf6d-6870-43b3-8bf4-b2c50c3cf896",
               "isHook": false,
-              "skipped": true
+              "skipped": false
             }
           ],
           "suites": [],
           "passes": [],
-          "failures": [],
-          "pending": [],
-          "skipped": [
-            "d024c60a-afbd-4f0d-b031-208a904a54ce"
+          "failures": [
+            "9ce32ae6-f5bb-465f-8eed-45de441c431f"
           ],
-          "duration": 0,
+          "pending": [],
+          "skipped": [],
+          "duration": 33926,
           "root": false,
           "rootEmpty": false,
           "_timeout": 60000
