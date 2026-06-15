@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2026-06-15T05:03:59.382Z",
-    "end": "2026-06-15T05:04:41.260Z",
-    "duration": 41878,
+    "start": "2026-06-15T05:31:04.066Z",
+    "end": "2026-06-15T05:31:47.883Z",
+    "duration": 43817,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "57e61210-e82e-4341-9b7a-01f14e563dcf",
+      "uuid": "b079135a-3f94-4a53-a4b1-1fd438ec8a5a",
       "title": "",
       "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
       "file": "/tests/login.test.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "d8a190a7-1aa4-4a2a-9b43-f081b4b62809",
+          "uuid": "4435cbc4-3b9c-4824-a462-41c08f17d051",
           "title": "Web Application Login E2E Test",
           "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
           "file": "/tests/login.test.js",
@@ -36,7 +36,7 @@
               "title": "\"before all\" hook in \"Web Application Login E2E Test\"",
               "fullTitle": "Web Application Login E2E Test \"before all\" hook in \"Web Application Login E2E Test\"",
               "timedOut": false,
-              "duration": 7628,
+              "duration": 9551,
               "state": null,
               "speed": null,
               "pass": false,
@@ -45,8 +45,8 @@
               "context": null,
               "code": "let options = new chrome.Options();\noptions.addArguments('--headless=new');\noptions.addArguments('--no-sandbox');\noptions.addArguments('--disable-dev-shm-usage');\n// Ignore certificate errors just in case\noptions.addArguments('--ignore-certificate-errors');\ndriver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();\nawait driver.manage().window().setRect({ width: 1280, height: 800 });",
               "err": {},
-              "uuid": "2598acfd-c50f-42d6-8704-5709011f2a07",
-              "parentUUID": "d8a190a7-1aa4-4a2a-9b43-f081b4b62809",
+              "uuid": "3bd8da5c-e0a2-4560-8c5f-54c8e3f77793",
+              "parentUUID": "4435cbc4-3b9c-4824-a462-41c08f17d051",
               "isHook": true,
               "skipped": false
             }
@@ -56,7 +56,7 @@
               "title": "\"after all\" hook in \"Web Application Login E2E Test\"",
               "fullTitle": "Web Application Login E2E Test \"after all\" hook in \"Web Application Login E2E Test\"",
               "timedOut": false,
-              "duration": 54,
+              "duration": 52,
               "state": null,
               "speed": null,
               "pass": false,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "if (driver) {\n    await driver.quit();\n}",
               "err": {},
-              "uuid": "27ed63d3-11f8-4003-9334-a6faa40eaf06",
-              "parentUUID": "d8a190a7-1aa4-4a2a-9b43-f081b4b62809",
+              "uuid": "80d36f87-e3cc-43f4-a238-980ec554323c",
+              "parentUUID": "4435cbc4-3b9c-4824-a462-41c08f17d051",
               "isHook": true,
               "skipped": false
             }
@@ -76,21 +76,21 @@
               "title": "should successfully login and navigate to dashboard",
               "fullTitle": "Web Application Login E2E Test should successfully login and navigate to dashboard",
               "timedOut": false,
-              "duration": 34192,
+              "duration": 34209,
               "state": "failed",
               "speed": null,
               "pass": false,
               "fail": true,
               "pending": false,
               "context": null,
-              "code": "const baseUrl = process.env.BASE_URL || 'http://localhost:8081';\nconsole.log(`[DEBUG] Navigating to: ${baseUrl}`);\n\nawait driver.get(baseUrl);\n// 1. React Native Web takes time to load JS and run SplashScreen\n// Wait until we see something indicating the app is loaded.\nconsole.log('[DEBUG] Waiting for React application to mount...');\ntry {\n    await driver.wait(until.elementLocated(By.css('div')), 15000);\n} catch (e) {\n    await takeScreenshot('error-app-mount');\n    throw new Error('React app did not mount. Is the web server returning HTML properly?');\n}\n// 2. Wait for Splash Screen to transition to Login Screen (2.5 seconds usually)\n// Look for the email placeholder or the \"Welcome Back\" text\nconsole.log('[DEBUG] Waiting for Login Screen to appear...');\nlet emailInput;\ntry {\n    emailInput = await driver.wait(\n        until.elementLocated(By.css('input[placeholder*=\"email\" i]')),\n        30000\n    );\n} catch (e) {\n    await takeScreenshot('error-login-screen-not-found');\n    const source = await driver.getPageSource();\n    console.log('[DEBUG] Page source snippet:', source.substring(0, 1000));\n    throw new Error('Login screen email input not found after 30s. Did the splash screen hang?');\n}\n// 3. Enter credentials\nconsole.log('[DEBUG] Entering credentials...');\nawait emailInput.sendKeys('savaramvivekdatta@gmail.com');\nconst passwordInput = await driver.findElement(By.css('input[placeholder*=\"password\" i], input[type=\"password\"]'));\nawait passwordInput.sendKeys('password123');\n// 4. Click Login Button\nconsole.log('[DEBUG] Clicking Sign In button...');\n// Find a div that contains exactly \"Sign In\"\nconst loginButton = await driver.findElement(By.xpath('//div[text()=\"Sign In\" or .//div[text()=\"Sign In\"]]'));\nawait loginButton.click();\n// 5. Wait for the Dashboard to load\n// The dashboard has \"Welcome back,\" and \"Your Oral Health Score\"\nconsole.log('[DEBUG] Waiting for Dashboard to load...');\ntry {\n    await driver.wait(\n        until.elementLocated(By.xpath('//*[contains(text(), \"Oral Health Score\") or contains(text(), \"Welcome back\")]')),\n        30000\n    );\n} catch (e) {\n    await takeScreenshot('error-dashboard-not-loaded');\n    throw new Error('Dashboard did not load after clicking Login. Did the API call fail?');\n}\n\nconsole.log('[DEBUG] Dashboard successfully loaded!');\nawait takeScreenshot('success-dashboard');\n\nassert.ok(true, \"Successfully logged in and navigated away from login screen\");",
+              "code": "const baseUrl = process.env.BASE_URL || 'http://localhost:8081';\nconsole.log(`[DEBUG] Navigating to: ${baseUrl}`);\n\nawait driver.get(baseUrl);\n// 1. React Native Web takes time to load JS and run SplashScreen\n// Wait until we see something indicating the app is loaded.\nconsole.log('[DEBUG] Waiting for React application to mount...');\ntry {\n    await driver.wait(until.elementLocated(By.css('div')), 15000);\n} catch (e) {\n    await takeScreenshot('error-app-mount');\n    throw new Error('React app did not mount. Is the web server returning HTML properly?');\n}\n// 2. Wait for Splash Screen to transition to Login Screen (2.5 seconds usually)\n// Look for the email placeholder or the \"Welcome Back\" text\nconsole.log('[DEBUG] Waiting for Login Screen to appear...');\nlet emailInput;\ntry {\n    emailInput = await driver.wait(\n        until.elementLocated(By.css('input[placeholder*=\"email\" i]')),\n        30000\n    );\n} catch (e) {\n    await takeScreenshot('error-login-screen-not-found');\n    const source = await driver.getPageSource();\n    console.log('[DEBUG] Page source snippet:', source.substring(0, 1000));\n    throw new Error('Login screen email input not found after 30s. Did the splash screen hang?');\n}\n// 3. Enter credentials\nconsole.log('[DEBUG] Entering credentials...');\nawait emailInput.sendKeys('testuser@example.com');\nconst passwordInput = await driver.findElement(By.css('input[placeholder*=\"password\" i], input[type=\"password\"]'));\nawait passwordInput.sendKeys('password123');\n// 4. Click Login Button\nconsole.log('[DEBUG] Clicking Sign In button...');\n// Find a div that contains exactly \"Sign In\"\nconst loginButton = await driver.findElement(By.xpath('//div[text()=\"Sign In\" or .//div[text()=\"Sign In\"]]'));\nawait loginButton.click();\n// 5. Wait for the Dashboard to load\n// The dashboard has \"Welcome back,\" and \"Your Oral Health Score\"\nconsole.log('[DEBUG] Waiting for Dashboard to load...');\ntry {\n    await driver.wait(\n        until.elementLocated(By.xpath('//*[contains(text(), \"Oral Health Score\") or contains(text(), \"Welcome back\")]')),\n        30000\n    );\n} catch (e) {\n    await takeScreenshot('error-dashboard-not-loaded');\n    throw new Error('Dashboard did not load after clicking Login. Did the API call fail?');\n}\n\nconsole.log('[DEBUG] Dashboard successfully loaded!');\nawait takeScreenshot('success-dashboard');\n\nassert.ok(true, \"Successfully logged in and navigated away from login screen\");",
               "err": {
                 "message": "Error: Dashboard did not load after clicking Login. Did the API call fail?",
                 "estack": "Error: Dashboard did not load after clicking Login. Did the API call fail?\n    at Context.<anonymous> (tests/login.test.js:92:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
                 "diff": null
               },
-              "uuid": "28677fe9-9296-4405-978b-018cc07b16a5",
-              "parentUUID": "d8a190a7-1aa4-4a2a-9b43-f081b4b62809",
+              "uuid": "d091572a-677f-44dc-8a4a-e506afa19b74",
+              "parentUUID": "4435cbc4-3b9c-4824-a462-41c08f17d051",
               "isHook": false,
               "skipped": false
             }
@@ -98,11 +98,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "28677fe9-9296-4405-978b-018cc07b16a5"
+            "d091572a-677f-44dc-8a4a-e506afa19b74"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 34192,
+          "duration": 34209,
           "root": false,
           "rootEmpty": false,
           "_timeout": 60000
