@@ -122,6 +122,13 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🔗 [View Live Test Report](https://Vivekdattasavaram.github.io/DenutraAi/reports/selenium-report.html)" >> $GITHUB_STEP_SUMMARY
 
+      - name: Upload Selenium Debug Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-debug-screenshots
+          path: react_frontend/selenium-tests/reports/*.png
+
       - name: Deploy Selenium Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
