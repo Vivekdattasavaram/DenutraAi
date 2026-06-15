@@ -14,10 +14,13 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configure CORS for React Native frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Adjust in production
+    allow_origins=[
+        "http://localhost:8081",
+        "http://127.0.0.1:8081",
+        "https://Vivekdattasavaram.github.io"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
