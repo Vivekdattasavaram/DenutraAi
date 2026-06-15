@@ -61,7 +61,7 @@ jobs:
           npx serve public_html -p 8081 &
           npx wait-on tcp:8081 -t 30000
           cd selenium-tests
-          BASE_URL=http://localhost:8081/DenutraAi npm run login || true
+          BASE_URL=http://localhost:8081/DenutraAi npm run login
 
       - name: Add index page linking to Selenium Report
         if: always()
