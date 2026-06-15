@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 0,
-    "start": "2026-06-15T03:58:52.559Z",
-    "end": "2026-06-15T03:58:53.749Z",
-    "duration": 1190,
+    "start": "2026-06-15T04:05:21.198Z",
+    "end": "2026-06-15T04:05:28.876Z",
+    "duration": 7678,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "b9fc2bff-81b3-4a70-b234-a36956f7e5a1",
+      "uuid": "3d3fed2c-b58e-41fc-b0f0-92562c970b72",
       "title": "",
       "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
       "file": "/tests/login.test.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "8aa31359-319d-42b3-9d54-04ff623927cd",
+          "uuid": "9ba829c4-6f6d-4e18-853d-5e395626daa2",
           "title": "Web Application Login E2E Test",
           "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
           "file": "/tests/login.test.js",
@@ -36,7 +36,7 @@
               "title": "\"before all\" hook for \"should successfully login and navigate to dashboard\"",
               "fullTitle": "Web Application Login E2E Test \"before all\" hook for \"should successfully login and navigate to dashboard\"",
               "timedOut": false,
-              "duration": 1185,
+              "duration": 7673,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -49,8 +49,8 @@
                 "estack": "SessionNotCreatedError: session not created: This version of ChromeDriver only supports Chrome version 131\nCurrent browser version is 149.0.7827.53 with binary path /usr/bin/google-chrome\n    at Object.throwDecodedError (node_modules/selenium-webdriver/lib/error.js:523:15)\n    at parseHttpResponse (node_modules/selenium-webdriver/lib/http.js:526:13)\n    at Executor.execute (node_modules/selenium-webdriver/lib/http.js:458:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
                 "diff": null
               },
-              "uuid": "dc15fad0-32cf-4788-9ab8-b5d8286f2800",
-              "parentUUID": "8aa31359-319d-42b3-9d54-04ff623927cd",
+              "uuid": "a2a6c7d1-736f-48b8-9b69-ecc45d6744e2",
+              "parentUUID": "9ba829c4-6f6d-4e18-853d-5e395626daa2",
               "isHook": true,
               "skipped": false
             }
@@ -69,8 +69,8 @@
               "context": null,
               "code": "if (driver) {\n    await driver.quit();\n}",
               "err": {},
-              "uuid": "50fdc12d-999a-40ea-99a5-363f8a04758f",
-              "parentUUID": "8aa31359-319d-42b3-9d54-04ff623927cd",
+              "uuid": "25cf3b2c-0d37-49f2-a234-0312c4db5238",
+              "parentUUID": "9ba829c4-6f6d-4e18-853d-5e395626daa2",
               "isHook": true,
               "skipped": false
             }
@@ -89,8 +89,8 @@
               "context": null,
               "code": "// Navigate to the Expo Web local server (or deployed URL)\nconst baseUrl = process.env.BASE_URL || 'http://localhost:8081';\nawait driver.get(baseUrl);\n// Wait for the email input field to be located and visible\n// In react-native-web, testID is rendered as data-testid\nconst emailInput = await driver.wait(\n    until.elementLocated(By.css('[data-testid=\"email\"]')),\n    30000\n);\nawait emailInput.sendKeys('savaramvivekdatta@gmail.com');\n// Locate and interact with password\nconst passwordInput = await driver.findElement(By.css('[data-testid=\"password\"]'));\nawait passwordInput.sendKeys('password123');\n// Locate and click the login button\nconst loginButton = await driver.findElement(By.css('[data-testid=\"login-button\"]'));\nawait loginButton.click();\n// Wait for login to complete by observing UI changes\n// Assuming that after login, the email input is no longer present or a dashboard element appears.\nawait driver.wait(\n    until.stalenessOf(emailInput),\n    30000,\n    \"Login did not succeed or took too long.\"\n);\n\n// Test Passed.\nassert.ok(true, \"Successfully logged in and navigated away from login screen\");",
               "err": {},
-              "uuid": "e67ee484-7660-4daa-9bca-6299d89e5a9d",
-              "parentUUID": "8aa31359-319d-42b3-9d54-04ff623927cd",
+              "uuid": "7ade0bbc-7341-4e6d-8686-cfebb4b100c6",
+              "parentUUID": "9ba829c4-6f6d-4e18-853d-5e395626daa2",
               "isHook": false,
               "skipped": true
             }
@@ -100,7 +100,7 @@
           "failures": [],
           "pending": [],
           "skipped": [
-            "e67ee484-7660-4daa-9bca-6299d89e5a9d"
+            "7ade0bbc-7341-4e6d-8686-cfebb4b100c6"
           ],
           "duration": 0,
           "root": false,
