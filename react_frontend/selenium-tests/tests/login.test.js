@@ -102,28 +102,36 @@ describe('Web Application Login E2E Test', function () {
 
         // 4. Click Login Button
         console.log('[DEBUG] Clicking Sign In button...');
-        // Find a div that contains exactly "Sign In"
-        const loginButton = await driver.findElement(By.xpath('//div[text()="Sign In" or .//div[text()="Sign In"]]'));
+        await takeScreenshot('before-click');
         
-        // Use JavaScript click to bypass any React Native Web touch responder overlays
-        await driver.executeScript("arguments[0].click();", loginButton);
+        const loginButton = await driver.findElement(By.css('[data-testid="login-button"]'));
+        
+        // React Native Web TouchableOpacity responds best to native Selenium clicks (which emit mousedown/mouseup)
+        // rather than JS .click() which only emits a click event.
+        await loginButton.click();
 
-        // Wait a moment to see if any alert pops up
-        await driver.sleep(2000);
+        // Wait a moment to see if any alert pops up or transition starts
+        await driver.sleep(3000);
+        await takeScreenshot('after-click-3s');
 
         // 5. Wait for the Dashboard to load
-        // The dashboard has "Welcome back," and "Your Oral Health Score"
+        // The dashboard has "Welcome back," and "Oral Health Score"
         console.log('[DEBUG] Waiting for Dashboard to load...');
         try {
             await driver.wait(
                 until.elementLocated(By.xpath('//*[contains(text(), "Oral Health Score") or contains(text(), "Welcome back")]')),
-                30000
+                20000
             );
         } catch (e) {
             await takeScreenshot('error-dashboard-not-loaded');
             await printBrowserLogs();
             const currentUrl = await driver.getCurrentUrl();
             console.log(`[DEBUG] Current URL at failure: ${currentUrl}`);
+            
+            // Also dump the page source text to see what is actually rendered!
+            const bodyText = await driver.findElement(By.tagName('body')).getText();
+            console.log(`[DEBUG] Page body text at failure: \n${bodyText.substring(0, 1000)}`);
+            
             throw new Error('Dashboard did not load after clicking Login. Did the API call fail?');
         }
         
