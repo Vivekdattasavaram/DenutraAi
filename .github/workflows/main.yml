@@ -71,12 +71,10 @@ jobs:
       - name: Serve Web App & Run Selenium Tests
         working-directory: react_frontend
         run: |
-          mkdir -p public_html/DenutraAi
-          cp -r dist/* public_html/DenutraAi/
-          npx serve public_html -p 8081 &
+          npx serve dist -p 8081 &
           npx wait-on tcp:8081 -t 30000
           cd selenium-tests
-          BASE_URL=http://localhost:8081/DenutraAi npm run login
+          BASE_URL=http://localhost:8081 npm run login
 
       - name: Add index page linking to Selenium Report
         if: always()
