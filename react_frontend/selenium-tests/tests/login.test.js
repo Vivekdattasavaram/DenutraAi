@@ -86,16 +86,30 @@ describe('Web Application Login E2E Test', function () {
 
         // 3. Enter credentials
         console.log('[DEBUG] Entering credentials...');
+        await emailInput.click();
         await emailInput.sendKeys('testuser@example.com');
 
         const passwordInput = await driver.findElement(By.css('input[placeholder*="password" i], input[type="password"]'));
+        await passwordInput.click();
         await passwordInput.sendKeys('password123');
+
+        // Let React state update
+        await driver.sleep(1000);
+
+        // Verify values
+        const emailVal = await emailInput.getAttribute('value');
+        console.log(`[DEBUG] Email input value: ${emailVal}`);
 
         // 4. Click Login Button
         console.log('[DEBUG] Clicking Sign In button...');
         // Find a div that contains exactly "Sign In"
         const loginButton = await driver.findElement(By.xpath('//div[text()="Sign In" or .//div[text()="Sign In"]]'));
-        await loginButton.click();
+        
+        // Use JavaScript click to bypass any React Native Web touch responder overlays
+        await driver.executeScript("arguments[0].click();", loginButton);
+
+        // Wait a moment to see if any alert pops up
+        await driver.sleep(2000);
 
         // 5. Wait for the Dashboard to load
         // The dashboard has "Welcome back," and "Your Oral Health Score"
