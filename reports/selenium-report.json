@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2026-06-15T05:39:27.983Z",
-    "end": "2026-06-15T05:40:09.313Z",
-    "duration": 41330,
+    "start": "2026-06-15T05:39:34.303Z",
+    "end": "2026-06-15T05:40:19.038Z",
+    "duration": 44735,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "1f2a9ccf-54ef-45bb-9c21-2cb9defcd195",
+      "uuid": "cb84aca3-de58-46aa-a11c-f4d1aa2b4965",
       "title": "",
       "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
       "file": "/tests/login.test.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "1476e5af-b021-4932-a3c7-01698de874da",
+          "uuid": "4c4ca731-44a1-4d3f-a663-4a6ac7887c4b",
           "title": "Web Application Login E2E Test",
           "fullFile": "/home/runner/work/DenutraAi/DenutraAi/react_frontend/selenium-tests/tests/login.test.js",
           "file": "/tests/login.test.js",
@@ -36,7 +36,7 @@
               "title": "\"before all\" hook in \"Web Application Login E2E Test\"",
               "fullTitle": "Web Application Login E2E Test \"before all\" hook in \"Web Application Login E2E Test\"",
               "timedOut": false,
-              "duration": 7178,
+              "duration": 10304,
               "state": null,
               "speed": null,
               "pass": false,
@@ -45,8 +45,8 @@
               "context": null,
               "code": "let options = new chrome.Options();\noptions.addArguments('--headless=new');\noptions.addArguments('--no-sandbox');\noptions.addArguments('--disable-dev-shm-usage');\n// Ignore certificate errors just in case\noptions.addArguments('--ignore-certificate-errors');\ndriver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();\nawait driver.manage().window().setRect({ width: 1280, height: 800 });",
               "err": {},
-              "uuid": "55221e17-dfb9-4f25-a93c-f4582cf09d42",
-              "parentUUID": "1476e5af-b021-4932-a3c7-01698de874da",
+              "uuid": "16eff28e-4ea7-4e92-bbdb-808b02d0cc68",
+              "parentUUID": "4c4ca731-44a1-4d3f-a663-4a6ac7887c4b",
               "isHook": true,
               "skipped": false
             }
@@ -56,7 +56,7 @@
               "title": "\"after all\" hook in \"Web Application Login E2E Test\"",
               "fullTitle": "Web Application Login E2E Test \"after all\" hook in \"Web Application Login E2E Test\"",
               "timedOut": false,
-              "duration": 52,
+              "duration": 53,
               "state": null,
               "speed": null,
               "pass": false,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "if (driver) {\n    await driver.quit();\n}",
               "err": {},
-              "uuid": "6f270d2f-6a74-43e6-8105-5af960eaf7b9",
-              "parentUUID": "1476e5af-b021-4932-a3c7-01698de874da",
+              "uuid": "ae723e42-7252-4abd-86bc-c4712e2d8043",
+              "parentUUID": "4c4ca731-44a1-4d3f-a663-4a6ac7887c4b",
               "isHook": true,
               "skipped": false
             }
@@ -76,7 +76,7 @@
               "title": "should successfully login and navigate to dashboard",
               "fullTitle": "Web Application Login E2E Test should successfully login and navigate to dashboard",
               "timedOut": false,
-              "duration": 34096,
+              "duration": 34374,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -89,8 +89,8 @@
                 "estack": "Error: Dashboard did not load after clicking Login. Did the API call fail?\n    at Context.<anonymous> (tests/login.test.js:113:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
                 "diff": null
               },
-              "uuid": "9de4cb43-9db6-467f-ab2e-53cbd68febdf",
-              "parentUUID": "1476e5af-b021-4932-a3c7-01698de874da",
+              "uuid": "7736513e-b414-422e-aec1-9b7a1140998b",
+              "parentUUID": "4c4ca731-44a1-4d3f-a663-4a6ac7887c4b",
               "isHook": false,
               "skipped": false
             }
@@ -98,11 +98,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "9de4cb43-9db6-467f-ab2e-53cbd68febdf"
+            "7736513e-b414-422e-aec1-9b7a1140998b"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 34096,
+          "duration": 34374,
           "root": false,
           "rootEmpty": false,
           "_timeout": 60000
